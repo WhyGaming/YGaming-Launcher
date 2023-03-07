@@ -236,25 +236,16 @@ namespace GameLauncher
                 archive.ExtractToDirectory(destinationDirectoryName);
                 return;
             }
-
-            DirectoryInfo di = Directory.CreateDirectory(destinationDirectoryName);
-            string destinationDirectoryFullPath = di.FullName;
-
             foreach (ZipArchiveEntry file in archive.Entries)
             {
-                string completeFileName = Path.GetFullPath(Path.Combine(destinationDirectoryFullPath, file.FullName));
+                string completeFileName = Path.Combine(destinationDirectoryName, file.FullName);
+                string directory = Path.GetDirectoryName(completeFileName);
 
-                if (!completeFileName.StartsWith(destinationDirectoryFullPath, StringComparison.OrdinalIgnoreCase))
-                {
-                    throw new IOException("Trying to extract file outside of destination directory. See this link for more info: https://snyk.io/research/zip-slip-vulnerability");
-                }
+                if (!Directory.Exists(directory))
+                    Directory.CreateDirectory(directory);
 
-                if (file.Name == "")
-                {// Assuming Empty for Directory
-                    Directory.CreateDirectory(Path.GetDirectoryName(completeFileName));
-                    continue;
-                }
-                file.ExtractToFile(completeFileName, true);
+                if (file.Name != "")
+                    file.ExtractToFile(completeFileName, true);
             }
         }
     }

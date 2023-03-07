@@ -91,6 +91,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="fonts\NunitoSans-Light.ttf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,10 +101,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\LauncherBackground.png" />
+    <Resource Include="images\YGaming_logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\YGaming_logo.ico" />
+    <Content Include="images\LauncherBackground.png" />
+    <Resource Include="images\YideSpace_alpha-title.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
